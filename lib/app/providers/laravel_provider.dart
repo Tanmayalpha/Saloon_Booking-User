@@ -322,6 +322,8 @@ class LaravelApiClient extends GetxService with ApiClient {
     if (!_address.isUnknown()) {
       _queryParameters['myLat'] = _address.latitude.toString();
       _queryParameters['myLon'] = _address.longitude.toString();
+    }else{
+      return [];
     }
     Uri _uri =
         getApiBaseUri("salons").replace(queryParameters: _queryParameters);

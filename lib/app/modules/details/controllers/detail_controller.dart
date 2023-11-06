@@ -1,5 +1,6 @@
 import 'package:beauty_salons_customer/app/models/salon_model.dart';
 import 'package:beauty_salons_customer/app/providers/laravel_provider.dart';
+import 'package:beauty_salons_customer/app/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -163,6 +164,29 @@ class DetailController extends GetxController {
     }
 }
   Future loadEServicesOfCategory(String categoryId, {CategoryFilter filter}) async {
+    /*final _address = Get.find<SettingsService>().address.value;
+    if(_address.isUnknown()){
+      showDialog(
+          context: Get.context,
+          barrierDismissible: true,
+          builder: (ctx) {
+            return AlertDialog(
+              title: Text("Device Location Not Enabled"),
+              content: Text(
+                  "For a better user experience, please enable location permissions for this app"),
+              *//*actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                    },
+                    child: Text("OK"))
+              ],*//*
+            );
+          });
+      return;
+    }else{
+
+    }*/
       isLoading.value = true;
       isDone.value = false;
       eSalon.clear();
