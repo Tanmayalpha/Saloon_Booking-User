@@ -22,6 +22,7 @@ class GetLocation{
       _serviceEnabled = await location1.requestService();
       if (!_serviceEnabled) {
         print('ek');
+        onResult(false);
         return;
       }
     }
@@ -33,6 +34,7 @@ class GetLocation{
       _permissionGranted = await location1.requestPermission();
       if (_permissionGranted != PermissionStatus.granted) {
         print('no');
+        onResult(false);
         return;
       }
     }else{

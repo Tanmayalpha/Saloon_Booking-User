@@ -11,10 +11,10 @@ class UserRepository {
 
   UserRepository() {}
 
-  Future<String> loginOtp(String mobile) {
+  Future<String> loginOtp(String mobile,String deviceToken) {
     _laravelApiClient = Get.find<LaravelApiClient>();
     print("Login Mobile No.${mobile.toString()}");
-    return _laravelApiClient.sendOtp(mobile.toString());
+    return _laravelApiClient.sendOtp(mobile.toString(),deviceToken);
   }
   Future<User> verifyOtp(Map param) {
     _laravelApiClient = Get.find<LaravelApiClient>();

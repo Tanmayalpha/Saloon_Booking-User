@@ -148,10 +148,11 @@ class LaravelApiClient extends GetxService with ApiClient {
   //   }
   // }
 
-  Future<String> sendOtp(String mobile) async {
+  Future<String> sendOtp(String mobile,String deviceToken) async {
     print("check api.....${mobile.toString()}");
     var _queryParameters = {
       'mobile': "+91" +mobile,
+      'device_token':deviceToken
     };
     //
         print("Parameters ${_queryParameters.toString()}");
@@ -322,6 +323,8 @@ class LaravelApiClient extends GetxService with ApiClient {
     if (!_address.isUnknown()) {
       _queryParameters['myLat'] = _address.latitude.toString();
       _queryParameters['myLon'] = _address.longitude.toString();
+    }else{
+      return [];
     }
     Uri _uri =
         getApiBaseUri("salons").replace(queryParameters: _queryParameters);

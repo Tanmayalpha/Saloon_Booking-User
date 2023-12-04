@@ -47,7 +47,7 @@ class Address extends Model {
   }
 
   bool isUnknown() {
-    return latitude == null || longitude == null;
+    return latitude == null || longitude == null ||latitude == 18.52189077471387 || longitude == 73.85588410330736;
   }
 
   String get getDescription {

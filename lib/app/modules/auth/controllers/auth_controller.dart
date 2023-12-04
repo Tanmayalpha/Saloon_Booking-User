@@ -75,8 +75,8 @@ class AuthController extends GetxController {
       loading.value = true;
 
       try {
-        await Get.find<FireBaseMessagingService>().setDeviceToken();
-         otp.value = await _userRepository.loginOtp(currentUser.value.mobile.replaceAll("+91", ""));
+       String deviceToken = await Get.find<FireBaseMessagingService>().setDeviceToken();
+         otp.value = await _userRepository.loginOtp(currentUser.value.mobile.replaceAll("+91", ""),deviceToken);
          if(currentUser.value.email!=null){
            await _userRepository.signInWithEmailAndPassword(currentUser.value.email, currentUser.value.apiToken);
          }

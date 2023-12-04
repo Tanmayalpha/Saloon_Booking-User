@@ -60,7 +60,7 @@ dependencies:
   mobile_number: ^1.0.4
   location: ^4.4.0
   geocoder: ^0.2.1
-
+  connectivity_plus: any
   dropdown_button2: ^2.0.0
   google_maps_place_picker_mb: ^3.0.1
   image_cropper: ^3.0.2

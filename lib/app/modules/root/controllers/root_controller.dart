@@ -2,7 +2,10 @@
  * Copyright (c) 2020 .
  */
 
+import 'dart:async';
+
 import 'package:beauty_salons_customer/app/services/settings_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,21 +42,44 @@ class RootController extends GetxController {
   void onInit() async {
     super.onInit();
     await getCustomPages();
+
     getLocation();
   }
-  getLocation(){
+
+  getLocation() {
     GetLocation getLocation = new GetLocation((value) {
-      Get.find<SettingsService>().address.update((val) {
-        val.description = value.first.locality;
-        val.address = value.first.addressLine;
-        val.latitude = value.first.coordinates.latitude;
-        val.longitude = value.first.coordinates.longitude;
-        val.userId = Get.find<AuthService>().user.value.id;
-      });
-      Get.find<HomeController>().refreshHome();
+      if (value is bool) {
+        showDialog(
+            context: Get.context,
+            barrierDismissible: false,
+            builder: (ctx) {
+              return AlertDialog(
+                title: Text("Device Location Not Enabled"),
+                content: Text(
+                    "For a better user experience, please enable location permissions for this app"),
+                actions: [
+                  ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text("OK"))
+                ],
+              );
+            });
+      } else {
+        Get.find<SettingsService>().address.update((val) {
+          val.description = value.first.locality;
+          val.address = value.first.addressLine;
+          val.latitude = value.first.coordinates.latitude;
+          val.longitude = value.first.coordinates.longitude;
+          val.userId = Get.find<AuthService>().user.value.id;
+        });
+        Get.find<HomeController>().refreshHome();
+      }
     });
-   getLocation.getLoc();
+    getLocation.getLoc();
   }
+
   List<Widget> pages = [
     Home2View(),
     // MapsView(),
@@ -67,13 +93,12 @@ class RootController extends GetxController {
    * change page in route
    * */
   Future<void> changePageInRoot(int _index) async {
-
     if (!Get.find<AuthService>().isAuth && _index > 0) {
       await Get.toNamed(Routes.LOGIN);
     } else {
       currentIndex.value = _index;
       await refreshPage(_index);
-     /* if(_index!=3){
+      /* if(_index!=3){
 
       }else{
 
@@ -129,9 +154,8 @@ class RootController extends GetxController {
   }
 
   void getNotificationsCount() async {
-
     var val = await _notificationRepository.getCount();
-    print("countcheck"+val.toString());
+    print("countcheck" + val.toString());
     notificationsCount.value = val;
   }
 
