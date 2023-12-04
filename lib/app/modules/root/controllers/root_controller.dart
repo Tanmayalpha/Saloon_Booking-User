@@ -2,7 +2,10 @@
  * Copyright (c) 2020 .
  */
 
+import 'dart:async';
+
 import 'package:beauty_salons_customer/app/services/settings_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,6 +42,7 @@ class RootController extends GetxController {
   void onInit() async {
     super.onInit();
     await getCustomPages();
+
     getLocation();
   }
 

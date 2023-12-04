@@ -127,9 +127,10 @@ class FireBaseMessagingService extends GetxService {
     }
   }
 
-  Future<void> setDeviceToken() async {
+  Future<String> setDeviceToken() async {
     Get.find<AuthService>().user.value.deviceToken = await FirebaseMessaging.instance.getToken();
     print("fcmToken${Get.find<AuthService>().user.value.deviceToken}");
+    return Get.find<AuthService>().user.value.deviceToken ?? "";
   }
 
   void _bookingNotification(RemoteMessage message) {

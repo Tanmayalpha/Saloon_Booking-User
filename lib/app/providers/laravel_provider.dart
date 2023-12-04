@@ -148,10 +148,11 @@ class LaravelApiClient extends GetxService with ApiClient {
   //   }
   // }
 
-  Future<String> sendOtp(String mobile) async {
+  Future<String> sendOtp(String mobile,String deviceToken) async {
     print("check api.....${mobile.toString()}");
     var _queryParameters = {
       'mobile': "+91" +mobile,
+      'device_token':deviceToken
     };
     //
         print("Parameters ${_queryParameters.toString()}");
