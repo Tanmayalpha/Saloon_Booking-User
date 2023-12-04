@@ -5,7 +5,6 @@
 import 'dart:async';
 
 import 'package:beauty_salons_customer/app/services/settings_service.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

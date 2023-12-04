@@ -61,6 +61,7 @@ class HomeController extends GetxController {
     await getFeatured();
     await getRecommendedSalons();
     Get.find<RootController>().getNotificationsCount();
+   // Get.find<SettingsService>().init();
     if (showMessage) {
       Get.showSnackbar(
           Ui.SuccessSnackBar(message: "Home page refreshed successfully".tr));

@@ -24,6 +24,7 @@ class AddressWidget extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 GetLocation getLocation = new GetLocation((value) {
+
                   if (value is bool) {
                     showDialog(
                         context: Get.context,
